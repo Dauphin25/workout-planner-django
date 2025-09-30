@@ -35,4 +35,64 @@ Below, I describe the relationships in **plain sentences**.
 
 1. Convert these sentences into an **EER diagram** (Entity-Relationship Diagram).  
 2. Use this diagram to implement **Django models**.  
-3. Implement **REST API endpoints** for CRUD operations on these models.  
+3. Implement **REST API endpoints** for CRUD operations on these models.
+
+
+```mermaid
+
+erDiagram
+    USER ||--o{ WORKOUT_PLAN : "creates"
+    WORKOUT_PLAN ||--o{ WORKOUT_SESSION : "consists of"
+    WORKOUT_SESSION }o--o{ EXERCISE : "includes"
+    WORKOUT_SESSION ||--o{ WORKOUT_SESSION_EXERCISE : "customizes"
+    USER ||--o{ PROGRESS_RECORD : "tracks"
+    USER ||--o{ GOAL : "sets"
+    GOAL ||--|| USER : "belongs to"
+    WORKOUT_PLAN {
+        int id PK
+        int user_id FK
+        string goal_type
+        int frequency
+        int daily_duration
+    }
+    WORKOUT_SESSION {
+        int id PK
+        int workout_plan_id FK
+        date session_date
+    }
+    EXERCISE {
+        int id PK
+        string name
+        string description
+        string target_muscles
+        string instructions
+    }
+    WORKOUT_SESSION_EXERCISE {
+        int id PK
+        int workout_session_id FK
+        int exercise_id FK
+        int sets
+        int repetitions
+        int duration
+        int distance
+        boolean completed
+    }
+    PROGRESS_RECORD {
+        int id PK
+        int user_id FK
+        date record_date
+        float weight
+    }
+    GOAL {
+        int id PK
+        int user_id FK
+        string description
+        float target_weight
+    }
+    USER {
+        int id PK
+        string username
+        string email
+        string password
+    }
+
