@@ -51,7 +51,7 @@ class Profile(models.Model):
         else:
             if hasattr(instance, 'profile'):
                 instance.profile.save()
-
+        
     class Meta:
         verbose_name = _("Profile")
         verbose_name_plural = _("Profiles")
