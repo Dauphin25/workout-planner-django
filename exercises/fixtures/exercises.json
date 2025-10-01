@@ -1,0 +1,362 @@
+[
+  {
+    "model": "exercises.exercise",
+    "pk": 1,
+    "fields": {
+      "name": "Push Up",
+      "description": "A bodyweight exercise that targets the chest, shoulders, and triceps.",
+      "instructions": "Keep your back straight, lower until chest nearly touches floor, then push back up.",
+      "equipment": "",
+      "difficulty": "beginner",
+      "exercise_type": "strength",
+      "calories_burned": 50,
+      "duration": 30,
+      "tips": "Do not let hips sag.",
+      "target_muscles": [1, 5],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 2,
+    "fields": {
+      "name": "Pull Up",
+      "description": "Upper body strength exercise targeting back and biceps.",
+      "instructions": "Hang from bar, pull yourself up until chin clears bar, lower down with control.",
+      "equipment": "Pull-up bar",
+      "difficulty": "advanced",
+      "exercise_type": "strength",
+      "calories_burned": 70,
+      "duration": 20,
+      "tips": "Engage core and avoid swinging.",
+      "target_muscles": [2, 5],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 3,
+    "fields": {
+      "name": "Squat",
+      "description": "Leg exercise that strengthens quadriceps, glutes, and hamstrings.",
+      "instructions": "Keep back straight, lower hips until thighs parallel, return to standing.",
+      "equipment": "",
+      "difficulty": "beginner",
+      "exercise_type": "strength",
+      "calories_burned": 100,
+      "duration": 40,
+      "tips": "Do not let knees pass toes.",
+      "target_muscles": [3, 4],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 4,
+    "fields": {
+      "name": "Lunges",
+      "description": "Strength exercise targeting legs and glutes.",
+      "instructions": "Step forward with one leg, lower hips until both knees at 90°, return to start.",
+      "equipment": "",
+      "difficulty": "intermediate",
+      "exercise_type": "strength",
+      "calories_burned": 80,
+      "duration": 40,
+      "tips": "Keep torso upright.",
+      "target_muscles": [3, 4],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 5,
+    "fields": {
+      "name": "Plank",
+      "description": "Isometric core exercise.",
+      "instructions": "Rest on forearms and toes, keep body straight from head to heels.",
+      "equipment": "",
+      "difficulty": "beginner",
+      "exercise_type": "flexibility",
+      "calories_burned": 40,
+      "duration": 60,
+      "tips": "Avoid letting hips drop.",
+      "target_muscles": [5],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 6,
+    "fields": {
+      "name": "Bicep Curl",
+      "description": "Strength exercise for biceps.",
+      "instructions": "Hold dumbbells, curl weights upward, then lower slowly.",
+      "equipment": "Dumbbells",
+      "difficulty": "beginner",
+      "exercise_type": "strength",
+      "calories_burned": 40,
+      "duration": 30,
+      "tips": "Avoid swinging arms.",
+      "target_muscles": [5],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 7,
+    "fields": {
+      "name": "Bench Press",
+      "description": "Classic chest strength exercise.",
+      "instructions": "Lie on bench, press barbell upward, lower with control.",
+      "equipment": "Barbell",
+      "difficulty": "intermediate",
+      "exercise_type": "strength",
+      "calories_burned": 120,
+      "duration": 40,
+      "tips": "Keep feet planted.",
+      "target_muscles": [1],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 8,
+    "fields": {
+      "name": "Deadlift",
+      "description": "Compound strength exercise for back, glutes, and legs.",
+      "instructions": "Lift barbell from floor while keeping back neutral.",
+      "equipment": "Barbell",
+      "difficulty": "advanced",
+      "exercise_type": "strength",
+      "calories_burned": 180,
+      "duration": 30,
+      "tips": "Do not round your back.",
+      "target_muscles": [2, 3, 4],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 9,
+    "fields": {
+      "name": "Burpees",
+      "description": "Full-body conditioning exercise.",
+      "instructions": "From standing, drop into push-up, return and jump explosively.",
+      "equipment": "",
+      "difficulty": "advanced",
+      "exercise_type": "endurance",
+      "calories_burned": 120,
+      "duration": 60,
+      "tips": "Maintain steady pace.",
+      "target_muscles": [1, 2, 3, 4, 5],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 10,
+    "fields": {
+      "name": "Jump Rope",
+      "description": "Cardio conditioning exercise.",
+      "instructions": "Jump over rope swung overhead and under feet.",
+      "equipment": "Jump rope",
+      "difficulty": "beginner",
+      "exercise_type": "cardio",
+      "calories_burned": 150,
+      "duration": 120,
+      "tips": "Land softly on balls of feet.",
+      "target_muscles": [3],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 11,
+    "fields": {
+      "name": "Mountain Climbers",
+      "description": "Cardio and core exercise performed in a plank position.",
+      "instructions": "Alternate driving knees toward chest quickly from plank.",
+      "equipment": "",
+      "difficulty": "intermediate",
+      "exercise_type": "cardio",
+      "calories_burned": 100,
+      "duration": 60,
+      "tips": "Keep hips low.",
+      "target_muscles": [5, 3],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 12,
+    "fields": {
+      "name": "Russian Twist",
+      "description": "Core exercise targeting obliques.",
+      "instructions": "Sit, lean back, twist torso side to side holding weight.",
+      "equipment": "Medicine ball",
+      "difficulty": "intermediate",
+      "exercise_type": "flexibility",
+      "calories_burned": 60,
+      "duration": 45,
+      "tips": "Keep feet off ground for challenge.",
+      "target_muscles": [5],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 13,
+    "fields": {
+      "name": "Shoulder Press",
+      "description": "Strength exercise for shoulders.",
+      "instructions": "Press dumbbells overhead from shoulder height.",
+      "equipment": "Dumbbells",
+      "difficulty": "intermediate",
+      "exercise_type": "strength",
+      "calories_burned": 80,
+      "duration": 30,
+      "tips": "Do not arch back.",
+      "target_muscles": [1],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 14,
+    "fields": {
+      "name": "Tricep Dip",
+      "description": "Bodyweight exercise for triceps.",
+      "instructions": "Lower body by bending elbows, then press up.",
+      "equipment": "Bench",
+      "difficulty": "beginner",
+      "exercise_type": "strength",
+      "calories_burned": 50,
+      "duration": 30,
+      "tips": "Keep elbows close to body.",
+      "target_muscles": [1, 5],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 15,
+    "fields": {
+      "name": "Leg Raise",
+      "description": "Core exercise focusing on lower abs.",
+      "instructions": "Lie flat, lift legs to vertical, lower slowly.",
+      "equipment": "",
+      "difficulty": "beginner",
+      "exercise_type": "flexibility",
+      "calories_burned": 40,
+      "duration": 30,
+      "tips": "Keep lower back pressed to floor.",
+      "target_muscles": [5],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 16,
+    "fields": {
+      "name": "Step Up",
+      "description": "Leg exercise using a bench or box.",
+      "instructions": "Step onto bench, drive knee up, step down.",
+      "equipment": "Bench",
+      "difficulty": "beginner",
+      "exercise_type": "strength",
+      "calories_burned": 60,
+      "duration": 40,
+      "tips": "Alternate legs.",
+      "target_muscles": [3, 4],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 17,
+    "fields": {
+      "name": "Side Plank",
+      "description": "Isometric core exercise for obliques.",
+      "instructions": "Support body on one forearm and side of foot.",
+      "equipment": "",
+      "difficulty": "intermediate",
+      "exercise_type": "flexibility",
+      "calories_burned": 30,
+      "duration": 45,
+      "tips": "Keep body in straight line.",
+      "target_muscles": [5],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 18,
+    "fields": {
+      "name": "Calf Raise",
+      "description": "Strength exercise for calves.",
+      "instructions": "Stand, rise onto toes, lower slowly.",
+      "equipment": "",
+      "difficulty": "beginner",
+      "exercise_type": "strength",
+      "calories_burned": 30,
+      "duration": 30,
+      "tips": "Pause at top.",
+      "target_muscles": [4],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 19,
+    "fields": {
+      "name": "Chest Fly",
+      "description": "Strength exercise for chest.",
+      "instructions": "Lie on bench, open arms wide with dumbbells, bring together.",
+      "equipment": "Dumbbells, bench",
+      "difficulty": "intermediate",
+      "exercise_type": "strength",
+      "calories_burned": 70,
+      "duration": 30,
+      "tips": "Keep elbows slightly bent.",
+      "target_muscles": [1],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "exercises.exercise",
+    "pk": 20,
+    "fields": {
+      "name": "Hip Thrust",
+      "description": "Glute exercise performed with back on bench.",
+      "instructions": "Drive hips upward, squeeze glutes, lower slowly.",
+      "equipment": "Bench",
+      "difficulty": "intermediate",
+      "exercise_type": "strength",
+      "calories_burned": 90,
+      "duration": 40,
+      "tips": "Keep chin tucked.",
+      "target_muscles": [4],
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  }
+]

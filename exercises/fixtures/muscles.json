@@ -1,0 +1,47 @@
+[
+  {
+    "model": "exercises.muscle",
+    "pk": 1,
+    "fields": {
+      "name": "Pectoralis Major",
+      "group": "chest",
+      "description": "Large chest muscle responsible for pushing movements."
+    }
+  },
+  {
+    "model": "exercises.muscle",
+    "pk": 2,
+    "fields": {
+      "name": "Latissimus Dorsi",
+      "group": "back",
+      "description": "Broad back muscle used in pulling motions."
+    }
+  },
+  {
+    "model": "exercises.muscle",
+    "pk": 3,
+    "fields": {
+      "name": "Quadriceps",
+      "group": "legs",
+      "description": "Front thigh muscles responsible for extending the knee."
+    }
+  },
+  {
+    "model": "exercises.muscle",
+    "pk": 4,
+    "fields": {
+      "name": "Hamstrings",
+      "group": "legs",
+      "description": "Back thigh muscles responsible for knee flexion."
+    }
+  },
+  {
+    "model": "exercises.muscle",
+    "pk": 5,
+    "fields": {
+      "name": "Deltoids",
+      "group": "shoulders",
+      "description": "Shoulder muscles responsible for lifting the arm."
+    }
+  }
+]
