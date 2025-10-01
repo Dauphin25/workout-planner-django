@@ -1,99 +1,362 @@
 # Workout Planner Django API
 
-This is a RESTful API for a **Personalized Workout Planner** system.  
-Before implementing the database and Django models, I started with a **conceptual design phase**.  
-This helps ensure the relationships between entities are clear before moving to code.  
+---
 
-Below, I describe the relationships in **plain sentences**.  
-- **Entities (models)** are **underlined**.  
-- **Relationships** are 🔗 **highlighted** in words.  
-- Each sentence also hints at the **relationship type** (One-to-Many, Many-to-Many, etc.).  
+## 📖 Project Overview
+
+This project is a RESTful API for a **Personalized Workout Planner** system, designed for internship submission.  
+It enables users to create and manage customized workout plans, track fitness goals, and monitor progress.  
+Key features include secure authentication, a rich database of exercises, goal tracking, achievements, and guided workout sessions.
+
+### Core Features
+
+- **User Authentication:** Secure registration, login, and logout using JWT.
+- **Predefined Exercises Database:** 20+ diverse exercises with details and muscle targeting.
+- **Personalized Workout Plans:** Users create and customize plans, select exercises, and set session details.
+- **Tracking & Goals:** Weight logs, goal tracking, and achievement recording.
+- **API Documentation:** Swagger and Redoc for easy endpoint testing.
+- **Bonus:** Guided workout mode, Docker deployment.
+
+---
+
+## 🚀 Setup & Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/workout_project.git
+   cd workout_project
+   ```
+2. **Create and activate a virtual environment:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Apply migrations:**
+   ```bash
+   python manage.py migrate
+   ```
+5. **Create a superuser (optional, for admin access):**
+   ```bash
+   python manage.py createsuperuser
+   ```
+6. **Seed the database with predefined exercises:**
+   ```bash
+   python manage.py loaddata exercises_seed.json
+   ```
+   *(See "Database Seeding" below for details.)*
+
+7. **Run the development server:**
+   ```bash
+   python manage.py runserver
+   ```
+
+---
+
+## 🗄️ Database Seeding
+
+- The initial set of 20+ predefined exercises is provided in `exercises_seed.json`.
+- To populate the database, use:
+  ```bash
+  python manage.py loaddata exercises_seed.json
+  ```
+- You can customize or extend this seed file as needed.
+
+---
+
+## 🔐 API Authentication
+
+- All sensitive endpoints require JWT authentication.
+- Obtain tokens via `/api/users/login/` or `/api/token/`.
+- Include the access token in the `Authorization` header:
+  ```
+  Authorization: Bearer <your_access_token>
+  ```
+- Endpoints for token management:
+  - `/api/token/` – Obtain token pair.
+  - `/api/token/refresh/` – Refresh token.
+  - `/api/token/verify/` – Verify token.
+
+---
+
+## 🐳 Docker & Deployment
+
+- The project includes Docker and Docker Compose files for easy setup.
+- To build and run with Docker:
+  ```bash
+  docker-compose up --build
+  ```
+- This will set up the backend and database automatically.
+
+---
+
+## 📄 API Documentation
+
+- **Swagger UI:** [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
+- **Redoc UI:** [http://localhost:8000/redoc/](http://localhost:8000/redoc/)
+- **OpenAPI Schema:** [http://localhost:8000/swagger.json](http://localhost:8000/swagger.json)
+
+---
+
+## 📌 API Endpoint Overview
+
+### User Endpoints (`users/urls.py`)
+- `/api/users/register/` – Register a new user.
+- `/api/users/login/` – Obtain JWT tokens for authentication.
+- `/api/users/logout/` – Logout and blacklist refresh token.
+
+### Profile Endpoints
+- `/api/profiles/` – Manage user profile (weight, height, lifestyle, etc.).
+
+### Exercise & Muscle Endpoints (`exercises/urls.py`)
+- `/api/exercises/` – List, create, update, delete, and search exercises.
+- `/api/muscles/` – List and retrieve muscle groups and details.
+
+### Workout Plan Endpoints (`workout_plan/urls.py`)
+- `/api/plans/` – CRUD for workout plans.
+- `/api/workout-days/` – CRUD for workout days within a plan.
+- `/api/workout-exercises/` – CRUD for exercises within a workout day.
+
+### Tracking & Achievements Endpoints (`tracking/urls.py`)
+- `/api/weight-logs/` – Track and manage user's weight history.
+- `/api/goal-trackings/` – Track progress toward specific fitness goals.
+- `/api/achievements/` – Record exercise achievements and milestones.
+
+### JWT Authentication Endpoints
+- `/api/token/` – Obtain JWT token pair.
+- `/api/token/refresh/` – Refresh JWT token.
+- `/api/token/verify/` – Verify JWT token.
+
+### API Documentation
+- `/swagger/` – Swagger UI.
+- `/redoc/` – Redoc UI.
+- `/swagger.json` – OpenAPI schema.
+
+---
+
+## 📌 User Model & Profile
+
+- The `User` model uses email as the unique identifier for authentication.
+- User fields: `email`, `username`, `first_name`, `last_name`, `phone_number`, `city`, `date_of_birth`, `registration_date`.
+- Each `User` has a one-to-one relationship with a `Profile`.
+- The `Profile` model extends user information with: `weight`, `height`, `lifestyle`, `age`, `gender`, `bio`, `dietary_preference`.
+
+**Registration, login, and logout** are handled securely using JWT authentication.
 
 ---
 
 ## 📌 Conceptual Relationships
 
-1. A __User__ can register, log in, and log out.  
-2. A __User__ 🔗 can create multiple __Workout Plans__ (**One-to-Many**).  
-3. A __Workout Plan__ 🔗 belongs to exactly one __User__ (**Many-to-One**).  
-4. A __Workout Plan__ 🔗 consists of multiple __Workout Sessions__ (**One-to-Many**).  
-5. Each __Workout Session__ 🔗 can include multiple __Exercises__ (**Many-to-Many**).  
-6. An __Exercise__ is predefined in the database (description, target muscles, instructions).  
-7. A __Workout Session Exercise__ 🔗 customizes a predefined __Exercise__ by adding sets, reps, duration, or distance.  
-8. A __User__ 🔗 can track multiple __Progress Records__ (**One-to-Many**).  
-9. A __User__ 🔗 can set multiple __Fitness Goals__ (**One-to-Many**).  
-10. A __Goal__ 🔗 belongs to one __User__ (**Many-to-One**).  
-11. A __Workout Plan__ has fields for **frequency** (e.g., 3x/week) and **daily duration**.  
-12. A __Workout Plan__ can target different **goal types** (strength, endurance, weight loss).  
-13. A __Workout Session__ has a **date** field for when it was performed.  
-14. A __Workout Session Exercise__ can be marked as **completed** or **skipped**.  
-15. A __User__ 🔗 can view and manage all of their __Workout Plans__, __Goals__, and __Progress Records__.  
+- A __User__ can register, log in, and log out.
+- A __User__ 🔗 can create multiple __Workout Plans__ (**One-to-Many**).
+- A __User__ 🔗 has one __Profile__ (**One-to-One**).
+- A __User__ 🔗 can track multiple __Progress Records__ (**One-to-Many**).
+- A __User__ 🔗 can set multiple __Fitness Goals__ (**One-to-Many**).
+- A __Workout Plan__ 🔗 contains multiple __Workout Days__ (**One-to-Many**).
+- A __Workout Day__ 🔗 contains multiple __Workout Exercises__ (**One-to-Many**).
+- A __Workout Exercise__ 🔗 references an __Exercise__.
 
 ---
 
-## 📌 Next Steps
+## 📌 User Endpoints
 
-1. Convert these sentences into an **EER diagram** (Entity-Relationship Diagram).  
-2. Use this diagram to implement **Django models**.  
-3. Implement **REST API endpoints** for CRUD operations on these models.
+- `/api/users/register/` – Register a new user.
+- `/api/users/login/` – Obtain JWT tokens for authentication.
+- `/api/users/logout/` – Logout and blacklist refresh token.
+- `/api/profiles/` – Manage user profile (weight, height, lifestyle, etc.).
 
+---
+
+## 📌 Exercise Endpoints
+
+- `/api/exercises/` – List, create, update, delete, and search exercises.
+    - Supports filtering by: `difficulty`, `exercise_type`, `equipment`, `target_muscles`.
+    - Supports searching by: `name`, `description`, `equipment`, `instructions`, `tips`.
+    - Supports ordering by: `name`, `difficulty`, `exercise_type`, `created_at`.
+    - List endpoint returns a concise summary; detail endpoint returns full info.
+- `/api/muscles/` – List and retrieve muscle groups and details.
+
+**Permissions:**  
+- Listing and retrieving exercises/muscles is open (`AllowAny`).
+- Creating, updating, and deleting exercises requires authentication (`IsAuthenticated`).
+
+---
+
+## 📌 Workout Plan Endpoints
+
+- `/api/workout-plans/` – CRUD for workout plans (title, description, frequency, goal, etc.).
+    - Only authenticated users can access and manage their own plans.
+- `/api/workout-days/` – CRUD for workout days within a plan.
+    - Each day is unique per plan and week day.
+    - Days include focus area, notes, session rating, calories burned, etc.
+- `/api/workout-exercises/` – CRUD for exercises within a workout day.
+    - Each exercise is linked to a workout day and references an exercise.
+    - Includes sets, reps, duration, rest, intensity, tempo, completion, feedback.
+
+**Permissions:**  
+- All workout plan/day/exercise endpoints require authentication (`IsAuthenticated`).
+- Users only see and manage their own plans, days, and exercises.
+
+---
+
+## 📌 Goal Endpoints
+
+- `/api/goals/` – CRUD for fitness goals (weight loss, muscle gain, etc.).
+    - Each goal has a name, type, description, duration, status, and feedback.
+
+---
+
+## 📌 Tracking & Achievements Endpoints
+
+### Weight Log
+
+- `/api/weight-logs/` – Track and manage user's weight history.
+    - Fields: `weight_kg`, `bmi`, `body_fat_percent`, `logged_at`, `notes`.
+    - Supports searching by `notes` and ordering by `logged_at`, `weight_kg`, `bmi`.
+    - Only authenticated users can access their own logs.
+
+### Goal Tracking
+
+- `/api/goal-trackings/` – Track progress toward specific fitness goals.
+    - Fields: `goal`, `target_value`, `current_value`, `starting_weight`, `ending_weight`, `progress_percent`, `notes`, `is_achieved`, `started_at`, `achieved_at`.
+    - Supports searching by `notes` and ordering by `started_at`, `progress_percent`.
+    - Only authenticated users can access their own goal tracking records.
+
+### Achievement
+
+- `/api/achievements/` – Record exercise achievements and milestones.
+    - Fields: `exercise`, `description`, `value`, `achieved_at`, `notes`.
+    - Supports searching by `description`, `notes` and ordering by `achieved_at`, `value`.
+    - Only authenticated users can access their own achievements.
+
+**Permissions:**  
+- All tracking and achievement endpoints require authentication (`IsAuthenticated`).
+- Users only see and manage their own records.
+
+---
+
+## 🏋️ Guided Workout Mode (Bonus Feature)
+
+- Real-time workout guidance: next exercise, sets, reps, rest periods.
+- Users can mark exercises as complete and note adjustments.
+- Accessible via `/api/workout-mode/` (see API docs for details).
+
+---
 
 ```mermaid
-
 erDiagram
+    USER ||--|| PROFILE : "has"
     USER ||--o{ WORKOUT_PLAN : "creates"
-    WORKOUT_PLAN ||--o{ WORKOUT_SESSION : "consists of"
-    WORKOUT_SESSION }o--o{ EXERCISE : "includes"
-    WORKOUT_SESSION ||--o{ WORKOUT_SESSION_EXERCISE : "customizes"
     USER ||--o{ PROGRESS_RECORD : "tracks"
     USER ||--o{ GOAL : "sets"
-    GOAL ||--|| USER : "belongs to"
+    WORKOUT_PLAN ||--o{ WORKOUT_DAY : "contains"
+    WORKOUT_DAY ||--o{ WORKOUT_EXERCISE : "contains"
+    WORKOUT_EXERCISE }o--|| EXERCISE : "references"
+    PROFILE {
+        int id PK
+        int user_id FK
+        float weight
+        float height
+        string lifestyle
+        int age
+        string gender
+        string bio
+        string dietary_preference
+    }
+    USER {
+        int id PK
+        string email
+        string username
+        string first_name
+        string last_name
+        string phone_number
+        string city
+        date date_of_birth
+        datetime registration_date
+        string password
+    }
     WORKOUT_PLAN {
         int id PK
         int user_id FK
-        string goal_type
-        int frequency
-        int daily_duration
+        string title
+        string description
+        int frequency_per_week
+        int daily_session_duration
+        int goal_id FK
+        string difficulty
+        date start_date
+        date end_date
+        decimal progress
+        bool is_active
+        datetime created_at
+        datetime updated_at
     }
-    WORKOUT_SESSION {
+    WORKOUT_DAY {
         int id PK
         int workout_plan_id FK
-        date session_date
+        string day_of_week
+        int order
+        string focus_area
+        string notes
+        bool is_rest_day
+        decimal session_rating
+        int calories_burned
+        datetime created_at
+        datetime updated_at
+    }
+    WORKOUT_EXERCISE {
+        int id PK
+        int workout_day_id FK
+        int exercise_id FK
+        int sets
+        int repetitions
+        int duration_seconds
+        int distance_meters
+        int rest_seconds
+        string notes
+        int order
+        string intensity
+        string tempo
+        bool completed
+        string feedback
+    }
+    GOAL {
+        int id PK
+        string name
+        string description
+        string goal_type
+        int recommended_duration_weeks
+        string status
+        string feedback
+        datetime created_at
+        datetime updated_at
     }
     EXERCISE {
         int id PK
         string name
         string description
-        string target_muscles
         string instructions
-    }
-    WORKOUT_SESSION_EXERCISE {
-        int id PK
-        int workout_session_id FK
-        int exercise_id FK
-        int sets
-        int repetitions
+        string equipment
+        string difficulty
+        string exercise_type
+        int calories_burned
         int duration
-        int distance
-        boolean completed
+        string tips
+        datetime created_at
+        datetime updated_at
     }
-    PROGRESS_RECORD {
+    MUSCLE {
         int id PK
-        int user_id FK
-        date record_date
-        float weight
-    }
-    GOAL {
-        int id PK
-        int user_id FK
+        string name
+        string group
         string description
-        float target_weight
+        string origin
+        string insertion
+        string function
     }
-    USER {
-        int id PK
-        string username
-        string email
-        string password
-    }
-
-
+    EXERCISE }o--o{ MUSCLE : "targets"
+```
+<!-- The rest of the file remains unchanged -->
