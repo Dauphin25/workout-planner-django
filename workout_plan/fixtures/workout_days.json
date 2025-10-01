@@ -1,0 +1,114 @@
+[
+  {
+    "model": "workout_plan.workoutday",
+    "pk": 1,
+    "fields": {
+      "workout_plan": 1,
+      "day_of_week": "Monday",
+      "order": 1,
+      "focus_area": "upper_body",
+      "notes": "Chest and triceps focus.",
+      "is_rest_day": false,
+      "session_rating": 4.5,
+      "calories_burned": 350,
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutday",
+    "pk": 2,
+    "fields": {
+      "workout_plan": 1,
+      "day_of_week": "Tuesday",
+      "order": 2,
+      "focus_area": "lower_body",
+      "notes": "Legs and glutes.",
+      "is_rest_day": false,
+      "session_rating": 4.2,
+      "calories_burned": 400,
+      "created_at": "2024-06-02T12:00:00Z",
+      "updated_at": "2024-06-02T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutday",
+    "pk": 3,
+    "fields": {
+      "workout_plan": 1,
+      "day_of_week": "Wednesday",
+      "order": 3,
+      "focus_area": "cardio",
+      "notes": "Cardio session.",
+      "is_rest_day": false,
+      "session_rating": 4.0,
+      "calories_burned": 500,
+      "created_at": "2024-06-03T12:00:00Z",
+      "updated_at": "2024-06-03T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutday",
+    "pk": 4,
+    "fields": {
+      "workout_plan": 1,
+      "day_of_week": "Thursday",
+      "order": 4,
+      "focus_area": "core",
+      "notes": "Core and abs.",
+      "is_rest_day": false,
+      "session_rating": 4.3,
+      "calories_burned": 300,
+      "created_at": "2024-06-04T12:00:00Z",
+      "updated_at": "2024-06-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutday",
+    "pk": 5,
+    "fields": {
+      "workout_plan": 1,
+      "day_of_week": "Friday",
+      "order": 5,
+      "focus_area": "full_body",
+      "notes": "Full body circuit.",
+      "is_rest_day": false,
+      "session_rating": 4.7,
+      "calories_burned": 600,
+      "created_at": "2024-06-05T12:00:00Z",
+      "updated_at": "2024-06-05T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutday",
+    "pk": 6,
+    "fields": {
+      "workout_plan": 1,
+      "day_of_week": "Saturday",
+      "order": 6,
+      "focus_area": "rest",
+      "notes": "Rest day.",
+      "is_rest_day": true,
+      "session_rating": null,
+      "calories_burned": null,
+      "created_at": "2024-06-06T12:00:00Z",
+      "updated_at": "2024-06-06T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutday",
+    "pk": 7,
+    "fields": {
+      "workout_plan": 1,
+      "day_of_week": "Sunday",
+      "order": 7,
+      "focus_area": "other",
+      "notes": "Mobility and stretching.",
+      "is_rest_day": false,
+      "session_rating": 4.1,
+      "calories_burned": 200,
+      "created_at": "2024-06-07T12:00:00Z",
+      "updated_at": "2024-06-07T12:00:00Z"
+    }
+  }
+]

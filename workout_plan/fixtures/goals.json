@@ -1,0 +1,87 @@
+[
+  {
+    "model": "workout_plan.goal",
+    "pk": 1,
+    "fields": {
+      "name": "Weight Loss",
+      "description": "Lose body fat and improve overall health.",
+      "goal_type": "weight_loss",
+      "recommended_duration_weeks": 12,
+      "status": "active",
+      "feedback": "",
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.goal",
+    "pk": 2,
+    "fields": {
+      "name": "Muscle Gain",
+      "description": "Increase muscle mass and strength.",
+      "goal_type": "muscle_gain",
+      "recommended_duration_weeks": 16,
+      "status": "active",
+      "feedback": "",
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.goal",
+    "pk": 3,
+    "fields": {
+      "name": "Endurance",
+      "description": "Improve cardiovascular and muscular endurance.",
+      "goal_type": "endurance",
+      "recommended_duration_weeks": 10,
+      "status": "active",
+      "feedback": "",
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.goal",
+    "pk": 4,
+    "fields": {
+      "name": "Flexibility",
+      "description": "Increase flexibility and range of motion.",
+      "goal_type": "flexibility",
+      "recommended_duration_weeks": 8,
+      "status": "active",
+      "feedback": "",
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.goal",
+    "pk": 5,
+    "fields": {
+      "name": "General Health",
+      "description": "Maintain overall health and wellness.",
+      "goal_type": "general_health",
+      "recommended_duration_weeks": 52,
+      "status": "active",
+      "feedback": "",
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.goal",
+    "pk": 6,
+    "fields": {
+      "name": "Other",
+      "description": "Custom or miscellaneous fitness goal.",
+      "goal_type": "other",
+      "recommended_duration_weeks": null,
+      "status": "active",
+      "feedback": "",
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  }
+]
+
