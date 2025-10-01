@@ -4,7 +4,7 @@
 
 ## 📖 Project Overview
 
-This project is a RESTful API for a **Personalized Workout Planner** system, designed for internship submission.  
+This project is a RESTful API for a **Personalized Workout Planner** system.  
 It enables users to create and manage customized workout plans, track fitness goals, and monitor progress.  
 Key features include secure authentication, a rich database of exercises, goal tracking, achievements, and guided workout sessions.
 
@@ -15,136 +15,7 @@ Key features include secure authentication, a rich database of exercises, goal t
 - **Personalized Workout Plans:** Users create and customize plans, select exercises, and set session details.
 - **Tracking & Goals:** Weight logs, goal tracking, and achievement recording.
 - **API Documentation:** Swagger and Redoc for easy endpoint testing.
-- **Bonus:** Guided workout mode, Docker deployment.
-
----
-
-## 🚀 Setup & Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yourusername/workout_project.git
-   cd workout_project
-   ```
-2. **Create and activate a virtual environment:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. **Apply migrations:**
-   ```bash
-   python manage.py migrate
-   ```
-5. **Create a superuser (optional, for admin access):**
-   ```bash
-   python manage.py createsuperuser
-   ```
-6. **Seed the database with predefined exercises:**
-   ```bash
-   python manage.py loaddata exercises_seed.json
-   ```
-   *(See "Database Seeding" below for details.)*
-
-7. **Run the development server:**
-   ```bash
-   python manage.py runserver
-   ```
-
----
-
-## 🗄️ Database Seeding
-
-- The initial set of 20+ predefined exercises is provided in `exercises_seed.json`.
-- To populate the database, use:
-  ```bash
-  python manage.py loaddata exercises_seed.json
-  ```
-- You can customize or extend this seed file as needed.
-
----
-
-## 🔐 API Authentication
-
-- All sensitive endpoints require JWT authentication.
-- Obtain tokens via `/api/users/login/` or `/api/token/`.
-- Include the access token in the `Authorization` header:
-  ```
-  Authorization: Bearer <your_access_token>
-  ```
-- Endpoints for token management:
-  - `/api/token/` – Obtain token pair.
-  - `/api/token/refresh/` – Refresh token.
-  - `/api/token/verify/` – Verify token.
-
----
-
-## 🐳 Docker & Deployment
-
-- The project includes Docker and Docker Compose files for easy setup.
-- To build and run with Docker:
-  ```bash
-  docker-compose up --build
-  ```
-- This will set up the backend and database automatically.
-
----
-
-## 📄 API Documentation
-
-- **Swagger UI:** [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
-- **Redoc UI:** [http://localhost:8000/redoc/](http://localhost:8000/redoc/)
-- **OpenAPI Schema:** [http://localhost:8000/swagger.json](http://localhost:8000/swagger.json)
-
----
-
-## 📌 API Endpoint Overview
-
-### User Endpoints (`users/urls.py`)
-- `/api/users/register/` – Register a new user.
-- `/api/users/login/` – Obtain JWT tokens for authentication.
-- `/api/users/logout/` – Logout and blacklist refresh token.
-
-### Profile Endpoints
-- `/api/profiles/` – Manage user profile (weight, height, lifestyle, etc.).
-
-### Exercise & Muscle Endpoints (`exercises/urls.py`)
-- `/api/exercises/` – List, create, update, delete, and search exercises.
-- `/api/muscles/` – List and retrieve muscle groups and details.
-
-### Workout Plan Endpoints (`workout_plan/urls.py`)
-- `/api/plans/` – CRUD for workout plans.
-- `/api/workout-days/` – CRUD for workout days within a plan.
-- `/api/workout-exercises/` – CRUD for exercises within a workout day.
-
-### Tracking & Achievements Endpoints (`tracking/urls.py`)
-- `/api/weight-logs/` – Track and manage user's weight history.
-- `/api/goal-trackings/` – Track progress toward specific fitness goals.
-- `/api/achievements/` – Record exercise achievements and milestones.
-
-### JWT Authentication Endpoints
-- `/api/token/` – Obtain JWT token pair.
-- `/api/token/refresh/` – Refresh JWT token.
-- `/api/token/verify/` – Verify JWT token.
-
-### API Documentation
-- `/swagger/` – Swagger UI.
-- `/redoc/` – Redoc UI.
-- `/swagger.json` – OpenAPI schema.
-
----
-
-## 📌 User Model & Profile
-
-- The `User` model uses email as the unique identifier for authentication.
-- User fields: `email`, `username`, `first_name`, `last_name`, `phone_number`, `city`, `date_of_birth`, `registration_date`.
-- Each `User` has a one-to-one relationship with a `Profile`.
-- The `Profile` model extends user information with: `weight`, `height`, `lifestyle`, `age`, `gender`, `bio`, `dietary_preference`.
-
-**Registration, login, and logout** are handled securely using JWT authentication.
+- **Bonus:** Guided workout mode.
 
 ---
 
@@ -159,92 +30,7 @@ Key features include secure authentication, a rich database of exercises, goal t
 - A __Workout Day__ 🔗 contains multiple __Workout Exercises__ (**One-to-Many**).
 - A __Workout Exercise__ 🔗 references an __Exercise__.
 
----
 
-## 📌 User Endpoints
-
-- `/api/users/register/` – Register a new user.
-- `/api/users/login/` – Obtain JWT tokens for authentication.
-- `/api/users/logout/` – Logout and blacklist refresh token.
-- `/api/profiles/` – Manage user profile (weight, height, lifestyle, etc.).
-
----
-
-## 📌 Exercise Endpoints
-
-- `/api/exercises/` – List, create, update, delete, and search exercises.
-    - Supports filtering by: `difficulty`, `exercise_type`, `equipment`, `target_muscles`.
-    - Supports searching by: `name`, `description`, `equipment`, `instructions`, `tips`.
-    - Supports ordering by: `name`, `difficulty`, `exercise_type`, `created_at`.
-    - List endpoint returns a concise summary; detail endpoint returns full info.
-- `/api/muscles/` – List and retrieve muscle groups and details.
-
-**Permissions:**  
-- Listing and retrieving exercises/muscles is open (`AllowAny`).
-- Creating, updating, and deleting exercises requires authentication (`IsAuthenticated`).
-
----
-
-## 📌 Workout Plan Endpoints
-
-- `/api/workout-plans/` – CRUD for workout plans (title, description, frequency, goal, etc.).
-    - Only authenticated users can access and manage their own plans.
-- `/api/workout-days/` – CRUD for workout days within a plan.
-    - Each day is unique per plan and week day.
-    - Days include focus area, notes, session rating, calories burned, etc.
-- `/api/workout-exercises/` – CRUD for exercises within a workout day.
-    - Each exercise is linked to a workout day and references an exercise.
-    - Includes sets, reps, duration, rest, intensity, tempo, completion, feedback.
-
-**Permissions:**  
-- All workout plan/day/exercise endpoints require authentication (`IsAuthenticated`).
-- Users only see and manage their own plans, days, and exercises.
-
----
-
-## 📌 Goal Endpoints
-
-- `/api/goals/` – CRUD for fitness goals (weight loss, muscle gain, etc.).
-    - Each goal has a name, type, description, duration, status, and feedback.
-
----
-
-## 📌 Tracking & Achievements Endpoints
-
-### Weight Log
-
-- `/api/weight-logs/` – Track and manage user's weight history.
-    - Fields: `weight_kg`, `bmi`, `body_fat_percent`, `logged_at`, `notes`.
-    - Supports searching by `notes` and ordering by `logged_at`, `weight_kg`, `bmi`.
-    - Only authenticated users can access their own logs.
-
-### Goal Tracking
-
-- `/api/goal-trackings/` – Track progress toward specific fitness goals.
-    - Fields: `goal`, `target_value`, `current_value`, `starting_weight`, `ending_weight`, `progress_percent`, `notes`, `is_achieved`, `started_at`, `achieved_at`.
-    - Supports searching by `notes` and ordering by `started_at`, `progress_percent`.
-    - Only authenticated users can access their own goal tracking records.
-
-### Achievement
-
-- `/api/achievements/` – Record exercise achievements and milestones.
-    - Fields: `exercise`, `description`, `value`, `achieved_at`, `notes`.
-    - Supports searching by `description`, `notes` and ordering by `achieved_at`, `value`.
-    - Only authenticated users can access their own achievements.
-
-**Permissions:**  
-- All tracking and achievement endpoints require authentication (`IsAuthenticated`).
-- Users only see and manage their own records.
-
----
-
-## 🏋️ Guided Workout Mode (Bonus Feature)
-
-- Real-time workout guidance: next exercise, sets, reps, rest periods.
-- Users can mark exercises as complete and note adjustments.
-- Accessible via `/api/workout-mode/` (see API docs for details).
-
----
 
 ```mermaid
 erDiagram
@@ -359,4 +145,156 @@ erDiagram
     }
     EXERCISE }o--o{ MUSCLE : "targets"
 ```
-<!-- The rest of the file remains unchanged -->
+
+
+## 🗄️ Database Seeding
+
+- The initial set of 20+ predefined exercises is provided in JSON files located in the `exercises/fixtures` folder.
+- also you can populate database with workout exercise, workout days, workout plans, goals, profiles, users with workout_plans/fixtures/ folder.
+- To populate the database, use:
+  ```bash
+  python manage.py loaddata app/fixtures/exercises_seed.json
+  ```
+- You can customize or extend this seed file as needed.
+
+---
+
+## 🔐 API Authentication
+
+- All sensitive endpoints require JWT authentication.
+- Obtain tokens via `/api/users/login/` or `/api/token/`.
+- Include the access token in the `Authorization` header:
+  ```
+  Authorization: Bearer <your_access_token>
+  ```
+- Endpoints for token management:
+  - `/api/token/` – Obtain token pair.
+  - `/api/token/refresh/` – Refresh token.
+  - `/api/token/verify/` – Verify token.
+
+---
+
+
+## 📄 API Documentation
+
+- **Swagger UI:** [http://localhost:8000/swagger/](http://localhost:8000/swagger/)
+- **Redoc UI:** [http://localhost:8000/redoc/](http://localhost:8000/redoc/)
+- **OpenAPI Schema:** [http://localhost:8000/swagger.json](http://localhost:8000/swagger.json)
+
+---
+
+## 📌 API Endpoint Overview
+
+### User Endpoints (`users/urls.py`)
+- `/api/users/register/` – Register a new user.
+- `/api/users/login/` – Obtain JWT tokens for authentication.
+- `/api/users/logout/` – Logout and blacklist refresh token.
+
+### Profile Endpoints
+- `/api/profiles/` – Manage user profile (weight, height, lifestyle, etc.).
+
+### Exercise & Muscle Endpoints (`exercises/urls.py`)
+- `/api/exercises/` – List, create, update, delete, and search exercises.
+- `/api/muscles/` – List and retrieve muscle groups and details.
+
+### Workout Plan Endpoints (`workout_plan/urls.py`)
+- `/api/plans/` – CRUD for workout plans.
+- `/api/workout-days/` – CRUD for workout days within a plan.
+- `/api/workout-exercises/` – CRUD for exercises within a workout day.
+
+### Tracking & Achievements Endpoints (`tracking/urls.py`)
+- `/api/weight-logs/` – Track and manage user's weight history.
+- `/api/goal-trackings/` – Track progress toward specific fitness goals.
+- `/api/achievements/` – Record exercise achievements and milestones.
+
+### JWT Authentication Endpoints
+- `/api/token/` – Obtain JWT token pair.
+- `/api/token/refresh/` – Refresh JWT token.
+- `/api/token/verify/` – Verify JWT token.
+
+### API Documentation
+- `/swagger/` – Swagger UI.
+- `/redoc/` – Redoc UI.
+- `/swagger.json` – OpenAPI schema.
+
+---
+
+
+---
+
+## 📌 Exercise Endpoints
+
+- `/api/exercises/` – List, create, update, delete, and search exercises.
+    - Supports filtering by: `difficulty`, `exercise_type`, `equipment`, `target_muscles`.
+    - Supports searching by: `name`, `description`, `equipment`, `instructions`, `tips`.
+    - Supports ordering by: `name`, `difficulty`, `exercise_type`, `created_at`.
+    - List endpoint returns a concise summary; detail endpoint returns full info.
+- `/api/muscles/` – List and retrieve muscle groups and details.
+
+**Permissions:**  
+- Listing and retrieving exercises/muscles is open (`AllowAny`).
+- Creating, updating, and deleting exercises requires authentication (`IsAuthenticated`).
+
+---
+
+## 📌 Workout Plan Endpoints
+
+- `/api/workout-plans/` – CRUD for workout plans (title, description, frequency, goal, etc.).
+    - Only authenticated users can access and manage their own plans.
+- `/api/workout-days/` – CRUD for workout days within a plan.
+    - Each day is unique per plan and week day.
+    - Days include focus area, notes, session rating, calories burned, etc.
+- `/api/workout-exercises/` – CRUD for exercises within a workout day.
+    - Each exercise is linked to a workout day and references an exercise.
+    - Includes sets, reps, duration, rest, intensity, tempo, completion, feedback.
+
+**Permissions:**  
+- All workout plan/day/exercise endpoints require authentication (`IsAuthenticated`).
+- Users only see and manage their own plans, days, and exercises.
+
+---
+
+## 📌 Goal Endpoints
+
+- `/api/goals/` – CRUD for fitness goals (weight loss, muscle gain, etc.).
+    - Each goal has a name, type, description, duration, status, and feedback.
+
+---
+
+## 📌 Tracking & Achievements Endpoints
+
+### Weight Log
+
+- `/api/weight-logs/` – Track and manage user's weight history.
+    - Fields: `weight_kg`, `bmi`, `body_fat_percent`, `logged_at`, `notes`.
+    - Supports searching by `notes` and ordering by `logged_at`, `weight_kg`, `bmi`.
+    - Only authenticated users can access their own logs.
+
+### Goal Tracking
+
+- `/api/goal-trackings/` – Track progress toward specific fitness goals.
+    - Fields: `goal`, `target_value`, `current_value`, `starting_weight`, `ending_weight`, `progress_percent`, `notes`, `is_achieved`, `started_at`, `achieved_at`.
+    - Supports searching by `notes` and ordering by `started_at`, `progress_percent`.
+    - Only authenticated users can access their own goal tracking records.
+
+### Achievement
+
+- `/api/achievements/` – Record exercise achievements and milestones.
+    - Fields: `exercise`, `description`, `value`, `achieved_at`, `notes`.
+    - Supports searching by `description`, `notes` and ordering by `achieved_at`, `value`.
+    - Only authenticated users can access their own achievements.
+
+**Permissions:**  
+- All tracking and achievement endpoints require authentication (`IsAuthenticated`).
+- Users only see and manage their own records.
+
+---
+
+## 🏋️ Guided Workout Mode (Bonus Feature)
+
+- Real-time workout guidance: next exercise, sets, reps, rest periods.
+- Users can mark exercises as complete and note adjustments.
+- Accessible via `/api/workout-mode/` (see API docs for details).
+
+---
+

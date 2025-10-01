@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'django_filters',
     'rest_framework_simplejwt.token_blacklist',  # <-- add this for JWT blacklist/logout
+    'workout_mode',
 ]
 
 MIDDLEWARE = [

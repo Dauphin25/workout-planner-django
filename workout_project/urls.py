@@ -57,6 +57,7 @@ urlpatterns = [
     path('api/', include('workout_plan.urls')),
 
     path('api/', include('tracking.urls')),
+    path('api/', include('workout_mode.urls')),
 
     # JWT auth endpoints
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
