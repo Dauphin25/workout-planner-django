@@ -1,0 +1,193 @@
+[
+  {
+    "model": "workout_plan.workoutplan",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "title": "Summer Shred",
+      "description": "A plan focused on fat loss and muscle definition.",
+      "frequency_per_week": 5,
+      "daily_session_duration": 60,
+      "goal": 1,
+      "difficulty": "intermediate",
+      "start_date": "2024-06-01",
+      "end_date": "2024-08-01",
+      "progress": 10.0,
+      "is_active": true,
+      "created_at": "2024-06-01T12:00:00Z",
+      "updated_at": "2024-06-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutplan",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "title": "Strength Gain",
+      "description": "Build strength with compound lifts.",
+      "frequency_per_week": 4,
+      "daily_session_duration": 75,
+      "goal": 1,
+      "difficulty": "advanced",
+      "start_date": "2024-07-01",
+      "end_date": "2024-09-01",
+      "progress": 20.0,
+      "is_active": true,
+      "created_at": "2024-07-01T12:00:00Z",
+      "updated_at": "2024-07-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutplan",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "title": "Beginner Full Body",
+      "description": "Simple plan for beginners.",
+      "frequency_per_week": 3,
+      "daily_session_duration": 45,
+      "goal": 1,
+      "difficulty": "beginner",
+      "start_date": "2024-05-01",
+      "end_date": "2024-06-01",
+      "progress": 50.0,
+      "is_active": false,
+      "created_at": "2024-05-01T12:00:00Z",
+      "updated_at": "2024-05-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutplan",
+    "pk": 4,
+    "fields": {
+      "user": 1,
+      "title": "Cardio Blast",
+      "description": "Improve endurance and burn calories.",
+      "frequency_per_week": 6,
+      "daily_session_duration": 40,
+      "goal": 1,
+      "difficulty": "intermediate",
+      "start_date": "2024-04-01",
+      "end_date": "2024-05-01",
+      "progress": 100.0,
+      "is_active": false,
+      "created_at": "2024-04-01T12:00:00Z",
+      "updated_at": "2024-04-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutplan",
+    "pk": 5,
+    "fields": {
+      "user": 1,
+      "title": "Core Focus",
+      "description": "Abs and core strength.",
+      "frequency_per_week": 4,
+      "daily_session_duration": 30,
+      "goal": 1,
+      "difficulty": "beginner",
+      "start_date": "2024-03-01",
+      "end_date": "2024-04-01",
+      "progress": 100.0,
+      "is_active": false,
+      "created_at": "2024-03-01T12:00:00Z",
+      "updated_at": "2024-03-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutplan",
+    "pk": 6,
+    "fields": {
+      "user": 1,
+      "title": "Mobility & Flexibility",
+      "description": "Improve flexibility and prevent injury.",
+      "frequency_per_week": 2,
+      "daily_session_duration": 25,
+      "goal": 1,
+      "difficulty": "beginner",
+      "start_date": "2024-02-01",
+      "end_date": "2024-03-01",
+      "progress": 100.0,
+      "is_active": false,
+      "created_at": "2024-02-01T12:00:00Z",
+      "updated_at": "2024-02-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutplan",
+    "pk": 7,
+    "fields": {
+      "user": 1,
+      "title": "Powerlifting Prep",
+      "description": "Prepare for powerlifting competition.",
+      "frequency_per_week": 5,
+      "daily_session_duration": 90,
+      "goal": 1,
+      "difficulty": "advanced",
+      "start_date": "2024-01-01",
+      "end_date": "2024-02-01",
+      "progress": 100.0,
+      "is_active": false,
+      "created_at": "2024-01-01T12:00:00Z",
+      "updated_at": "2024-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutplan",
+    "pk": 8,
+    "fields": {
+      "user": 1,
+      "title": "Hypertrophy Builder",
+      "description": "Muscle growth focused plan.",
+      "frequency_per_week": 5,
+      "daily_session_duration": 70,
+      "goal": 1,
+      "difficulty": "intermediate",
+      "start_date": "2023-12-01",
+      "end_date": "2024-01-01",
+      "progress": 100.0,
+      "is_active": false,
+      "created_at": "2023-12-01T12:00:00Z",
+      "updated_at": "2023-12-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutplan",
+    "pk": 9,
+    "fields": {
+      "user": 1,
+      "title": "Athlete Conditioning",
+      "description": "Sports performance plan.",
+      "frequency_per_week": 6,
+      "daily_session_duration": 80,
+      "goal": 1,
+      "difficulty": "advanced",
+      "start_date": "2023-11-01",
+      "end_date": "2023-12-01",
+      "progress": 100.0,
+      "is_active": false,
+      "created_at": "2023-11-01T12:00:00Z",
+      "updated_at": "2023-11-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "workout_plan.workoutplan",
+    "pk": 10,
+    "fields": {
+      "user": 1,
+      "title": "General Wellness",
+      "description": "Maintain health and fitness.",
+      "frequency_per_week": 3,
+      "daily_session_duration": 30,
+      "goal": 1,
+      "difficulty": "beginner",
+      "start_date": "2023-10-01",
+      "end_date": "2023-11-01",
+      "progress": 100.0,
+      "is_active": false,
+      "created_at": "2023-10-01T12:00:00Z",
+      "updated_at": "2023-10-01T12:00:00Z"
+    }
+  }
+]
+
