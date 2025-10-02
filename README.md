@@ -175,13 +175,23 @@ erDiagram
 
 ## 🗄️ Database Seeding
 
-- The initial set of 20+ predefined exercises is provided in JSON files located in the `exercises/fixtures` folder.
-- also you can populate database with workout exercise, workout days, workout plans, goals, profiles, users with workout_plans/fixtures/ folder.
+- The initial set of 20+ predefined exercises is provided in JSON files located in the `exercises/fixtures/exercises.json` folder.
+- Muscle groups are seeded from `exercises/fixtures/muscles.json`.
+- You can populate the database with workout plans, workout weeks, workout days, workout exercises, and goals using the JSON files in `workout_plan/fixtures/`:
+  - `workout_plans.json`
+  - `workout_days.json`
+  - `workout_exercises.json`
+  - `goals.json`
 - To populate the database, use:
   ```bash
-  python manage.py loaddata app/fixtures/exercises_seed.json
+  python manage.py loaddata exercises/fixtures/exercises.json
+  python manage.py loaddata exercises/fixtures/muscles.json
+  python manage.py loaddata workout_plan/fixtures/goals.json
+  python manage.py loaddata workout_plan/fixtures/workout_plans.json
+  python manage.py loaddata workout_plan/fixtures/workout_days.json
+  python manage.py loaddata workout_plan/fixtures/workout_exercises.json
   ```
-- You can customize or extend this seed file as needed.
+- You can customize or extend these seed files as needed.
 
 ---
 
@@ -326,3 +336,19 @@ erDiagram
 
 ---
 
+## 🚀 Docker Setup
+
+1. Build and start the containers:
+   ```bash
+   docker-compose up --build
+   ```
+2. The Django app will be available at [http://localhost:8000](http://localhost:8000).
+3. The PostgreSQL database will be available at port 5432.
+
+**Environment variables** are managed in the `.env` file.
+
+To run migrations and seed data:
+```bash
+docker-compose exec web python manage.py migrate
+docker-compose exec web python manage.py loaddata <your-fixture>.json
+```
