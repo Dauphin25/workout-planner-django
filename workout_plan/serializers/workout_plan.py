@@ -2,6 +2,7 @@ from rest_framework import serializers
 from ..models.workout_plan import WorkoutPlan
 from .goal import GoalSerializer
 from .workout_day import WorkoutDayCreateSerializer
+from .workout_week import WorkoutWeekCreateSerializer
 
 class WorkoutPlanSerializer(serializers.ModelSerializer):
     goal = GoalSerializer(read_only=True)
@@ -24,21 +25,22 @@ class WorkoutPlanSerializer(serializers.ModelSerializer):
         return None
 
 class WorkoutPlanCreateSerializer(serializers.ModelSerializer):
-    days = WorkoutDayCreateSerializer(many=True)
+    weeks = WorkoutWeekCreateSerializer(many=True)
 
     class Meta:
         model = WorkoutPlan
         fields = [
             'id', 'title', 'description', 'frequency_per_week', 'daily_session_duration',
-            'goal', 'difficulty', 'start_date', 'end_date', 'days'
+            'goal', 'difficulty', 'start_date', 'end_date', 'weeks'
         ]
 
     def create(self, validated_data):
-        days_data = validated_data.pop('days')
+        weeks_data = validated_data.pop('weeks')
         workout_plan = WorkoutPlan.objects.create(**validated_data)
-        for day_data in days_data:
-            exercises_data = day_data.pop('exercises')
-            workout_day = workout_plan.days.create(**day_data)
-            for exercise_data in exercises_data:
-                workout_day.exercises.create(**exercise_data)
+        for week_data in weeks_data:
+            days_data = week_data.pop('days')
+            week = workout_plan.weeks.create(**week_data)
+            for day_data in days_data:
+                day_data['workout_week'] = week
+                WorkoutDay.objects.create(**day_data)
         return workout_plan

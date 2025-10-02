@@ -1,5 +1,5 @@
 from django.db import models
-from .workout_plan import WorkoutPlan
+from .workout_week import WorkoutWeek
 
 
 class WorkoutDay(models.Model):
@@ -15,11 +15,13 @@ class WorkoutDay(models.Model):
         ("other", "Other"),
     ]
 
-    workout_plan = models.ForeignKey(
-        WorkoutPlan,
+    workout_week = models.ForeignKey(
+        WorkoutWeek,
         on_delete=models.CASCADE,
         related_name="days",
-        verbose_name="Workout Plan"
+        verbose_name="Workout Week",
+        null=True,      # Allow null for migration
+        blank=True      # Allow blank in admin/forms
     )
     day_of_week = models.CharField(
         max_length=20,
@@ -79,10 +81,10 @@ class WorkoutDay(models.Model):
     )
 
     class Meta:
-        unique_together = ("workout_plan", "day_of_week")
+        unique_together = ("workout_week", "day_of_week")
         ordering = ["order"]
         verbose_name = "Workout Day"
         verbose_name_plural = "Workout Days"
 
     def __str__(self):
-        return f"{self.workout_plan.title} - {self.day_of_week}"
+        return f"{self.workout_week} - {self.day_of_week}"

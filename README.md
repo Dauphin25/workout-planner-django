@@ -8,6 +8,19 @@ This project is a RESTful API for a **Personalized Workout Planner** system.
 It enables users to create and manage customized workout plans, track fitness goals, and monitor progress.  
 Key features include secure authentication, a rich database of exercises, goal tracking, achievements, and guided workout sessions.
 
+## 🧪 Test Credentials 
+
+Use the following credentials and token for API testing:
+
+- **Username:** `trainer`
+- **Email:** `trainer@gmail.com`
+- **Refresh Token:**  
+  ```
+  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NTQ0Nzk0MSwiaWF0IjoxNzU5Mzk5OTQxLCJqdGkiOiIyY2RmNzM3YjlhZTE0NjYwODgyNDkyMWI0YWE4MDE4ZSIsInVzZXJfaWQiOiI2In0.JY8-3FcnDAdjT5esETA0dGV78jDCSlOauodF-iopNOg
+  ```
+
+You can use this token for testing JWT authentication endpoints and user-specific API features.
+
 ### Core Features
 
 - **User Authentication:** Secure registration, login, and logout using JWT.
@@ -26,7 +39,8 @@ Key features include secure authentication, a rich database of exercises, goal t
 - A __User__ 🔗 has one __Profile__ (**One-to-One**).
 - A __User__ 🔗 can track multiple __Progress Records__ (**One-to-Many**).
 - A __User__ 🔗 can set multiple __Fitness Goals__ (**One-to-Many**).
-- A __Workout Plan__ 🔗 contains multiple __Workout Days__ (**One-to-Many**).
+- A __Workout Plan__ 🔗 contains multiple __Workout Weeks__ (**One-to-Many**).
+- A __Workout Week__ 🔗 contains multiple __Workout Days__ (**One-to-Many**).
 - A __Workout Day__ 🔗 contains multiple __Workout Exercises__ (**One-to-Many**).
 - A __Workout Exercise__ 🔗 references an __Exercise__.
 
@@ -38,7 +52,8 @@ erDiagram
     USER ||--o{ WORKOUT_PLAN : "creates"
     USER ||--o{ PROGRESS_RECORD : "tracks"
     USER ||--o{ GOAL : "sets"
-    WORKOUT_PLAN ||--o{ WORKOUT_DAY : "contains"
+    WORKOUT_PLAN ||--o{ WORKOUT_WEEK : "contains"
+    WORKOUT_WEEK ||--o{ WORKOUT_DAY : "contains"
     WORKOUT_DAY ||--o{ WORKOUT_EXERCISE : "contains"
     WORKOUT_EXERCISE }o--|| EXERCISE : "references"
     PROFILE {
@@ -80,9 +95,20 @@ erDiagram
         datetime created_at
         datetime updated_at
     }
-    WORKOUT_DAY {
+    WORKOUT_WEEK {
         int id PK
         int workout_plan_id FK
+        int week_number
+        date start_date
+        date end_date
+        decimal progress
+        bool is_active
+        datetime created_at
+        datetime updated_at
+    }
+    WORKOUT_DAY {
+        int id PK
+        int workout_week_id FK
         string day_of_week
         int order
         string focus_area
@@ -199,7 +225,8 @@ erDiagram
 
 ### Workout Plan Endpoints (`workout_plan/urls.py`)
 - `/api/plans/` – CRUD for workout plans.
-- `/api/workout-days/` – CRUD for workout days within a plan.
+- `/api/weeks/` – CRUD for workout weeks within a plan.
+- `/api/workout-days/` – CRUD for workout days within a week.
 - `/api/workout-exercises/` – CRUD for exercises within a workout day.
 
 ### Tracking & Achievements Endpoints (`tracking/urls.py`)
@@ -241,16 +268,17 @@ erDiagram
 
 - `/api/workout-plans/` – CRUD for workout plans (title, description, frequency, goal, etc.).
     - Only authenticated users can access and manage their own plans.
-- `/api/workout-days/` – CRUD for workout days within a plan.
-    - Each day is unique per plan and week day.
-    - Days include focus area, notes, session rating, calories burned, etc.
+- `/api/weeks/` – CRUD for workout weeks within a plan.
+    - Each week is linked to a workout plan and has a number, start date, end date, progress, and activity status.
+- `/api/workout-days/` – CRUD for workout days within a week.
+    - Each day is unique per week and includes focus area, notes, session rating, calories burned, etc.
 - `/api/workout-exercises/` – CRUD for exercises within a workout day.
     - Each exercise is linked to a workout day and references an exercise.
     - Includes sets, reps, duration, rest, intensity, tempo, completion, feedback.
 
 **Permissions:**  
-- All workout plan/day/exercise endpoints require authentication (`IsAuthenticated`).
-- Users only see and manage their own plans, days, and exercises.
+- All workout plan/week/day/exercise endpoints require authentication (`IsAuthenticated`).
+- Users only see and manage their own plans, weeks, days, and exercises.
 
 ---
 

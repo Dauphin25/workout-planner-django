@@ -11,7 +11,7 @@ class WorkoutDayCreateSerializer(serializers.ModelSerializer):
         model = WorkoutDay
         fields = [
             'id', 'day_of_week', 'order', 'focus_area', 'notes', 'is_rest_day',
-            'session_rating', 'calories_burned', 'exercises'
+            'session_rating', 'calories_burned', 'exercises', 'workout_week'
         ]
 
     def create(self, validated_data):
